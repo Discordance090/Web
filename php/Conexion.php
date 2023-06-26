@@ -8,8 +8,7 @@
 
 
     try{
-        $bd = new PDO("mysql:host=$host;dbname=$dbname",$username,$password);
-        echo "Conexión exitosa";
+        $bd = new PDO("mysql:host=$host;dbname=$dbname",$username,$password);       
     }catch(Exception $mensaje){
         echo "Error de conexión".$mensaje->getMessage();
     }

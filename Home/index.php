@@ -1,3 +1,6 @@
+<?php 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +18,7 @@
             <div class="container">
                 <a class="navbar-brand" href="#">9 X</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
@@ -25,8 +28,9 @@
     <main>
        <h1>a</h1>
 
-        
-    </main>
+    
+    
+</main>
 
     <footer class="bg-dark text-light footer py-3 mt-4">
         <div class="container text-center">

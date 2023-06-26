@@ -27,7 +27,7 @@
 
         <div class="container mt-4">
             <h2>Login</h2>
-            <form action="login.php" method="POST">
+            <form action="./php/server.php" method="POST">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username">
@@ -37,7 +37,7 @@
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
                 <div class="d-grid gap-2 col-6 mx-auto">
-                  <a class="btn btn-primary" href="./main/index.php" role="button">Login</a>
+                <button type="submit" class="btn btn-secondary" value="ValidarUsuario" name="accion" >Enviar</button>
                   <a class="btn btn-primary" href="./Registro" role="button">Create Account</a>
                 </div>
             </form>
@@ -50,9 +50,7 @@
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+   
 </body>
 
 </html>
