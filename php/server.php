@@ -54,19 +54,12 @@ function GuardarUsuario()
 function ValidarUsuario()
 {
     include 'conexion.php';
-
-
     $username = $_POST['username'];
     $password = $_POST['password'];
-
     $query = "SELECT * FROM user WHERE usuario = '$username' AND clave = '$password'";
 
     $stm = $bd->query($query);
     $result = $stm->fetchAll();
-
-
-
-
     foreach ($result as $row) {
         session_start();
         $_SESSION['id_user'] = $row['id_user']; // Almacena el ID del usuario en una variable de sesión
@@ -74,10 +67,20 @@ function ValidarUsuario()
         echo $row['id_user'];
         header("Location: /app/home/");
     }
-
-
 }
+function GetSongs()
+{
+    include 'conexion.php';
+    session_start();    
+    $id_user = $_SESSION['id_user'];
+    
+    $query = "SELECT * FROM archivos WHERE id_user = '$id_user' ";
 
+    $stm = $bd->query($query);
+    $result = $stm->fetchAll();
+    return $result;
+    
+}
 
 function Upload()
 {
@@ -87,7 +90,7 @@ function Upload()
     $nombreCancion = $_POST['nombre_cancion'];
     $genero = $_POST['genero'];
     session_start();
-    $id_user =$_SESSION['id_user'];
+    $id_user = $_SESSION['id_user'];
 
     // Obtener el contenido del archivo
     $archivo = file_get_contents($_FILES['archivo']['tmp_name']);
@@ -103,12 +106,12 @@ function Upload()
         $stmt->bindParam(':nombreCancion', $nombreCancion);
         $stmt->bindParam(':genero', $genero);
         $stmt->bindParam(':archivo', $archivo, PDO::PARAM_LOB);
-        $stmt->bindParam(':id_user',$id_user);
+        $stmt->bindParam(':id_user', $id_user);
 
         // Ejecutar la sentencia
         $stmt->execute();
 
-        echo "Canción guardada exitosamente.";
+        header("Location: /app/home/");
     } catch (PDOException $e) {
         echo "Error al guardar la canción: " . $e->getMessage();
     }
