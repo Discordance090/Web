@@ -21,16 +21,14 @@
                      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <a class="btn btn-primary" href="../upload/index.php" data-bs-toggle="modal">Upload</a>
             </div>
         </nav>
     </header>
 
     <main>
-       <h1>a</h1>
 
-    
-    
-</main>
+    </main>
 
     <footer class="bg-dark text-light footer py-3 mt-4">
         <div class="container text-center">

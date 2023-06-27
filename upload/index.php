@@ -25,7 +25,7 @@
    <div class="container">
         <h1>Subir música</h1>
 
-        <form action="../php/upload.php" method="POST" enctype="multipart/form-data">
+        <form action="../php/server.php" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="nombre_cancion" class="form-label">Nombre de la canción:</label>
                 <input type="text" name="nombre_cancion" id="nombre_cancion" class="form-control">
@@ -37,11 +37,12 @@
             </div>
 
             <div class="mb-3">
-                <label for="archivo_musica" class="form-label">Archivo de música:</label>
-                <input type="file" name="archivo_musica" id="archivo_musica" class="form-control">
+                <label for="archivo" class="form-label">Archivo de música:</label>
+                <input type="file" name="archivo" id="archivo" class="form-control">
             </div>
 
-            <button type="submit" class="btn btn-primary">Subir música</button>
+            <button type="submit" class="btn btn-secondary" value="Upload" name="accion" >Enviar</button>
+
         </form>
     </div>
 

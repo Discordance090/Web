@@ -4,7 +4,7 @@
     <title>Registro</title>
     <!-- Agrega los enlaces a los archivos CSS de Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/site.css">
+    <link rel="stylesheet" href="../css/site.css/stile.css">
 </head>
 <style>
     

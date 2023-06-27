@@ -1,6 +1,12 @@
 <?php
-echo "<pre>";
-var_dump($_POST);
+$nombreCancion = $_POST['nombre_cancion'];
+$genero = $_POST['genero'];
 var_dump($_FILES);
-echo "</pre>";
+$archivo = file_get_contents($_FILES['archivo']['tmp_name']);
+
+echo $genero;
+echo $nombreCancion;
+echo $archivo;
+
+
 ?>
