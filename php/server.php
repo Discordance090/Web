@@ -13,11 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ValidarUsuario();
                 break;
             case 'Upload':
+
                 Upload();
+                break;
+            case 'delete':
+                delete();
+                break;
+            case 'editar':
+                EditarCancion();
                 break;
             default:
                 // Acción no válida
                 echo "Acción no válida";
+                header("Location: /app/Index.php");
                 break;
         }
     } else {
@@ -40,6 +48,7 @@ function GuardarUsuario()
         $query = "INSERT INTO `user` (`nombre`, `usuario`, `email`, `clave`) VALUES (?, ?, ?, ?)";
         $stmt = $bd->prepare($query);
         $stmt->execute([$nombre, $usuario, $email, $contraseña]);
+        
 
         // Imprimir mensaje de éxito
 
@@ -51,6 +60,31 @@ function GuardarUsuario()
 
 }
 
+function EditarCancion()
+{
+    include 'conexion.php';
+    try {
+
+        // Obtener los datos del formulario
+        $id_cancion = $_POST['id_archivo'];
+        $nombre_cancion = $_POST['nombre_cancion'];
+        $genero = $_POST['genero'];
+
+
+        // Preparar la consulta para actualizar
+        $query = "UPDATE archivos SET nombre_cancion = ?, genero = ? WHERE id_cancion = ?";
+        $stmt = $bd->prepare($query);
+        $stmt->execute([$nombre_cancion, $genero, $id_cancion]);
+
+        // Imprimir mensaje de éxito
+
+        header("Location: /app/home/index.php");
+    } catch (PDOException $e) {
+        // Manejar errores de conexión o consultas
+        echo "Error: " . $e->getMessage();
+    }
+}
+
 function ValidarUsuario()
 {
     include 'conexion.php';
@@ -58,28 +92,52 @@ function ValidarUsuario()
     $password = $_POST['password'];
     $query = "SELECT * FROM user WHERE usuario = '$username' AND clave = '$password'";
 
-    $stm = $bd->query($query);
-    $result = $stm->fetchAll();
-    foreach ($result as $row) {
-        session_start();
-        $_SESSION['id_user'] = $row['id_user']; // Almacena el ID del usuario en una variable de sesión
-        echo "<script>alert('Inicio de sesión exitoso');</script>";
-        echo $row['id_user'];
-        header("Location: /app/home/");
+        
+        $stm = $bd->query($query);
+        $result = $stm->fetchAll();
+        foreach ($result as $row) {
+            
+            session_start();
+            $_SESSION['id_user'] = $row['id_user']; // Almacena el ID del usuario en una variable de sesión           
+            header("Location: /app/home/");
+            
+        }
+  
+}
+function delete()
+{
+    include 'conexion.php';
+    try {
+
+        // Obtener los datos del formulario
+        $id_cancion = $_POST['id_archivo'];
+
+        // Preparar la consulta para eliminar
+        $query = "delete FROM archivos WHERE id_cancion = ?";
+        $stmt = $bd->prepare($query);
+        $stmt->execute([$id_cancion]);
+
+        // Imprimir mensaje de éxito
+
+        header("Location: /app/home/index.php");
+    } catch (PDOException $e) {
+        // Manejar errores de conexión o consultas
+        echo "Error: " . $e->getMessage();
     }
+
 }
 function GetSongs()
 {
     include 'conexion.php';
-    session_start();    
+    session_start();
     $id_user = $_SESSION['id_user'];
-    
+
     $query = "SELECT * FROM archivos WHERE id_user = '$id_user' ";
 
     $stm = $bd->query($query);
     $result = $stm->fetchAll();
     return $result;
-    
+
 }
 
 function Upload()

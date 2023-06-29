@@ -3,8 +3,8 @@
 
     $host = "localhost";
     $username = "root";
-    $password = "";
-    $dbname = "bd_musica";
+    $password = "root";
+    $dbname = "musica";
 
 
     try{
